@@ -47,10 +47,10 @@ def preprocess(csv_path, seq_len=30, seed=42):
 
     return data, label
 
-class Obesity3dDataset(Dataset):
+class Obese3dDataset(Dataset):
     def __init__(self, data_dir, input_type='train', target_type='ID', seq_len=30, seed=42):
         """
-        `Obesity3dDataset` is a subclass of `torch.utils.data.Dataset` that is specifically designed to handle data for Obesity 3d action skeletons . 
+        `Obese3dDataset` is a subclass of `torch.utils.data.Dataset` that is specifically designed to handle data for Obesity 3d action skeletons . 
         It processes CSV files from given data_dir, splits them into sequences, and prepares them for model training and evaluation.
 
         #### Initialization Parameters:
@@ -93,7 +93,7 @@ class Obesity3dDataset(Dataset):
     def decode(self, targets):
         return self.label_encoder.inverse_transform(targets)
 
-def get_obesity3d_loaders(data_dir, batch_size=16, target_type='ID', seq_len=30, num_workers=2, seed=42):
+def get_obese3d_loaders(data_dir, batch_size=16, target_type='ID', seq_len=30, num_workers=2, seed=42):
     """
     `get_obesity3d_loaders` is a function that is specifically designed to handle data for Obesity 3d action skeletons. 
     It processes CSV files from given data_dir, splits them into sequences, and prepares them for model training and evaluation.
@@ -113,9 +113,9 @@ def get_obesity3d_loaders(data_dir, batch_size=16, target_type='ID', seq_len=30,
     - `valid_loader` : 10% of sequence data used for model validation
     - `test_loader` : 10% of sequence data used for model testing
     """
-    train_set = Obesity3dDataset(data_dir=data_dir, input_type='train', target_type=target_type, seq_len=seq_len, seed=seed)
-    valid_set = Obesity3dDataset(data_dir=data_dir, input_type='valid', target_type=target_type, seq_len=seq_len, seed=seed)
-    test_set = Obesity3dDataset(data_dir=data_dir, input_type='test', target_type=target_type, seq_len=seq_len, seed=seed)
+    train_set = Obese3dDataset(data_dir=data_dir, input_type='train', target_type=target_type, seq_len=seq_len, seed=seed)
+    valid_set = Obese3dDataset(data_dir=data_dir, input_type='valid', target_type=target_type, seq_len=seq_len, seed=seed)
+    test_set = Obese3dDataset(data_dir=data_dir, input_type='test', target_type=target_type, seq_len=seq_len, seed=seed)
     train_loader = DataLoader(train_set, batch_size=16, shuffle=True, num_workers=num_workers)
     valid_loader = DataLoader(valid_set, batch_size=16, shuffle=False, num_workers=num_workers)
     test_loader = DataLoader(test_set, batch_size=16, shuffle=False, num_workers=num_workers)
@@ -123,6 +123,6 @@ def get_obesity3d_loaders(data_dir, batch_size=16, target_type='ID', seq_len=30,
 
 if __name__ == "__main__": 
     # example useage
-    train_loader, valid_loader, test_loader = get_obesity3d_loaders(
+    train_loader, valid_loader, test_loader = get_obese3d_loaders(
         data_dir='/content/drive/MyDrive/collaboration/khw/data/coord', 
         batch_size=16, target_type='ID', seq_len=30, num_workers=2, seed=42)
