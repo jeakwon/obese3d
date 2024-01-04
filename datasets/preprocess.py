@@ -11,7 +11,7 @@ def array2d_to_tensor3d(array2d):
     n_rows, n_cols = array2d.shape
     array3d = array2d.reshape(n_rows, n_cols//3, 3)
     array3d -= array3d.mean(axis=(0, 1)) # offset
-    tensor3d = torch.from_numpy(array3d)
+    tensor3d = torch.from_numpy(array3d).float()
     return tensor3d
 
 def preprocess(csv_path, seq_len=30, seed=42):
