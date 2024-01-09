@@ -1,5 +1,6 @@
 import os
 import time
+import json
 import random
 import numpy as np
 import pandas as pd
@@ -10,8 +11,6 @@ import torch.nn as nn
 
 from . import models
 from .datasets import get_obese3d_loaders
-
-
 
 def train(device, model, data_loader, criterion, optimizer, scheduler=None):
     model = model.to(device)
