@@ -1,37 +1,6 @@
 import sys, argparse
-from obese3d.utils import benchmark
+from obese3d.utils import benchmark, argparser
 
 if __name__ == '__main__':
-
-    # Creating an argument parser
-    parser = argparse.ArgumentParser(description='Training Benchmark')
-
-    # Adding arguments
-    parser.add_argument('--model_name', type=str, default='LSTMClassifier', help='Model name')
-    parser.add_argument('--model_kwrags', type=dict, default={}, help='Additional keyword arguments for the model')
-
-    parser.add_argument('--criterion_name', type=str, default='CrossEntropyLoss', help='Name of the loss criterion')
-    parser.add_argument('--criterion_kwargs', type=dict, default={}, help='Additional keyword arguments for the criterion')
-
-    parser.add_argument('--optimizer_name', type=str, default='AdamW', help='Name of the optimizer')
-    parser.add_argument('--optimizer_kwargs', type=dict, default={}, help='Additional keyword arguments for the optimizer')
-
-    parser.add_argument('--seed', type=int, default=0, help='Random seed')
-    parser.add_argument('--epochs', type=int, default=100, help='Number of training epochs')
-    parser.add_argument('--batch_size', type=int, default=128, help='Batch size for training')
-    parser.add_argument('--lr', type=float, default=0.001, help='Learning rate for the optimizer')
-
-    parser.add_argument('--data_dir', type=str, default='/content/drive/MyDrive/collaboration/khw/data/coord', help='Directory for the dataset')
-    parser.add_argument('--seq_len', type=int, default=30, help='Sequence length')
-    parser.add_argument('--num_joints', type=int, default=9, help='Number of joints')
-    parser.add_argument('--dimension', type=int, default=3, help='Dimension of the input')
-
-    parser.add_argument('--hidden_size', type=int, default=256, help='Hidden size for the model')
-    parser.add_argument('--output_size', type=int, default=24, help='Output size of the model')
-    parser.add_argument('--target_type', type=str, default='ID', help='Target type for the dataset')
-
-    parser.add_argument('--save_dir', default='',  type=str, help='Directory to save the model state')
-    parser.add_argument('--quiet', action='store_true', help='suppress print logs')
-
-    # Parsing arguments
-    args = parser.parse_args()
+    args = argparser()
+    benchmark(args)
