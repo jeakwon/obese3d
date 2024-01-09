@@ -39,7 +39,7 @@ def argparser():
 
 def benchmark_notebook(prompt):
     sys.argv = prompt.split(' ')
-    argparser()
+    args = argparser()
     benchmark(args)
     
 if __name__ == '__main__':
