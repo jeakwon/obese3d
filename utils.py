@@ -1,5 +1,6 @@
 import os
 import time
+import random
 import numpy as np
 import pandas as pd
 from pprint import pprint
@@ -9,6 +10,8 @@ import torch.nn as nn
 
 from . import models
 from .datasets import get_obese3d_loaders
+
+
 
 def train(device, model, data_loader, criterion, optimizer, scheduler=None):
     model = model.to(device)
@@ -81,6 +84,16 @@ def evaluate(device, model, data_loader, criterion):
 
 def benchmark(args):
     pprint(vars(args))
+
+    random.seed(args.seed)
+    np.random.seed(args.seed)
+    torch.manual_seed(args.seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed(args.seed)
+        torch.cuda.manual_seed_all(args.seed)  # for multi-GPU setups
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
+    os.environ['PYTHONHASHSEED'] = str(args.seed)
 
     input_shape = [args.batch_size, args.seq_len, args.num_joints, args.dimension]
     hidden_size = args.hidden_size
