@@ -17,7 +17,8 @@ class LSTMClassifier(nn.Module):
         N, T, V, C = inputs.shape
         x = inputs.view(N, T, V * C)
         h0 = torch.zeros(self.num_layers, x.size(0), self.hidden_size).to(x.device)
-        out, _ = self.lstm(x, h0)  
+        c0 = torch.zeros(self.num_layers, x.size(0), self.hidden_size).to(x.device)
+        out, _ = self.lstm(x, (h0, c0))  
         out = out[:, -1, :]
         out = self.classifier(out)
         return out
