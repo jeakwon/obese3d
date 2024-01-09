@@ -83,7 +83,17 @@ def evaluate(device, model, data_loader, criterion):
         return avg_loss, avg_acc, avg_top5_acc
 
 def benchmark(args):
-    pprint(vars(args))
+    # Convert args to dictionary
+    args_dict = vars(args)
+
+    # Save the dictionary to a JSON file
+    if args.save_dir:
+        os.makedirs(args.save_dir, exist_ok=True)
+        json_path = os.path.join( args.save_dir, 'args.json')
+        with open(json_path, 'w') as json_file:
+            json.dump(args_dict, json_file, indent=4)
+    
+    pprint(args_dict)
 
     random.seed(args.seed)
     np.random.seed(args.seed)
@@ -115,9 +125,6 @@ def benchmark(args):
 
         train_loss, train_acc, train_top5_acc = train(device, model, train_loader, criterion, optimizer)
         valid_loss, valid_acc, valid_top5_acc = evaluate(device, model, valid_loader, criterion)
-
-        if args.save_dir:
-            os.makedirs(args.save_dir, exist_ok=True)
 
         if valid_loss < best_loss: 
             best_loss = valid_loss
