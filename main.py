@@ -1,4 +1,3 @@
-import sys, argparse
 from obese3d.utils import benchmark, argparser
 
 if __name__ == '__main__':
