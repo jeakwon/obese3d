@@ -7,6 +7,9 @@ from pprint import pprint
 import torch
 import torch.nn as nn
 
+from . import models
+from .datasets import get_obese3d_loaders
+
 def train(device, model, data_loader, criterion, optimizer, scheduler=None):
     model = model.to(device)
 
@@ -78,7 +81,7 @@ def evaluate(device, model, data_loader, criterion):
 
 def benchmark(args):
     pprint(vars(args))
-    
+
     input_shape = [args.batch_size, args.seq_len, args.num_joints, args.dimension]
     hidden_size = args.hidden_size
     output_size = args.output_size
