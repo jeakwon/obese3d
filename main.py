@@ -30,7 +30,7 @@ if __name__ == '__main__':
     parser.add_argument('--output_size', type=int, default=24, help='Output size of the model')
     parser.add_argument('--target_type', type=str, default='ID', help='Target type for the dataset')
 
-    parser.add_argument('--save_dir', default='./test',  type=str, help='Directory to save the model state')
+    parser.add_argument('--save_dir', default='',  type=str, help='Directory to save the model state')
     parser.add_argument('--quiet', action='store_true', help='suppress print logs')
 
     # Parsing arguments
