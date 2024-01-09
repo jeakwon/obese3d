@@ -1,9 +1,9 @@
 import torch
 import torch.nn as nn
 
-class FNNClassifier(nn.Module):
+class FFNClassifier(nn.Module):
     def __init__(self, input_shape, hidden_size, output_size, num_layers=1):
-        super(FNNClassifier, self).__init__()
+        super(FFNClassifier, self).__init__()
         self.input_shape = input_shape
         self.hidden_size = hidden_size
         self.num_layers = num_layers
