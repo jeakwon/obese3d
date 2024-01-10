@@ -1,4 +1,5 @@
 import os, sys
+import ast
 import argparse
 import time
 import json
@@ -112,9 +113,9 @@ def benchmark(args):
     train_loader, valid_loader, test_loader = get_obese3d_loaders(data_dir=args.data_dir, batch_size=args.batch_size, target_type=args.target_type, seq_len=args.seq_len)
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-    model = getattr(models, args.model_name)(input_shape, hidden_size, output_size, **args.model_kwargs)
-    criterion = getattr(nn, args.criterion_name)(**args.criterion_kwargs)
-    optimizer = getattr(torch.optim, args.optimizer_name)(model.parameters(), lr=args.lr, **args.optimizer_kwargs)
+    model = getattr(models, args.model_name)(input_shape, hidden_size, output_size, **ast.literal_eval(args.model_kwargs))
+    criterion = getattr(nn, args.criterion_name)(**ast.literal_eval(args.criterion_kwargs))
+    optimizer = getattr(torch.optim, args.optimizer_name)(model.parameters(), lr=args.lr, **ast.literal_eval(args.optimizer_kwargs))
 
     logs = []
     total_start_time = time.time()
