@@ -8,13 +8,13 @@ def argparser():
 
     # Adding arguments
     parser.add_argument('--model_name', type=str, default='LSTMClassifier', help='Model name')
-    parser.add_argument('--model_kwrags', type=dict, default={}, help='Additional keyword arguments for the model')
+    parser.add_argument('--model_kwargs', type=str, default="{}", help='Additional keyword arguments for the model')
 
     parser.add_argument('--criterion_name', type=str, default='CrossEntropyLoss', help='Name of the loss criterion')
-    parser.add_argument('--criterion_kwargs', type=dict, default={}, help='Additional keyword arguments for the criterion')
+    parser.add_argument('--criterion_kwargs', type=str, default="{}", help='Additional keyword arguments for the criterion')
 
     parser.add_argument('--optimizer_name', type=str, default='AdamW', help='Name of the optimizer')
-    parser.add_argument('--optimizer_kwargs', type=dict, default={}, help='Additional keyword arguments for the optimizer')
+    parser.add_argument('--optimizer_kwargs', type=str, default="{}", help='Additional keyword arguments for the optimizer')
 
     parser.add_argument('--seed', type=int, default=0, help='Random seed')
     parser.add_argument('--epochs', type=int, default=100, help='Number of training epochs')
