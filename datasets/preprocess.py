@@ -116,9 +116,9 @@ def get_obese3d_loaders(data_dir, batch_size=16, target_type='ID', seq_len=30, n
     train_set = Obese3dDataset(data_dir=data_dir, input_type='train', target_type=target_type, seq_len=seq_len, seed=seed)
     valid_set = Obese3dDataset(data_dir=data_dir, input_type='valid', target_type=target_type, seq_len=seq_len, seed=seed)
     test_set = Obese3dDataset(data_dir=data_dir, input_type='test', target_type=target_type, seq_len=seq_len, seed=seed)
-    train_loader = DataLoader(train_set, batch_size=16, shuffle=True, num_workers=num_workers)
-    valid_loader = DataLoader(valid_set, batch_size=16, shuffle=False, num_workers=num_workers)
-    test_loader = DataLoader(test_set, batch_size=16, shuffle=False, num_workers=num_workers)
+    train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=num_workers)
+    valid_loader = DataLoader(valid_set, batch_size=batch_size, shuffle=False, num_workers=num_workers)
+    test_loader = DataLoader(test_set, batch_size=batch_size, shuffle=False, num_workers=num_workers)
     return train_loader, valid_loader, test_loader
 
 if __name__ == "__main__": 
