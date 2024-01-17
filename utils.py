@@ -156,3 +156,28 @@ def benchmark(args):
             msg = f'[Epoch {epoch:3}/{args.epochs:3} {epoch_duration:6.2f}s {total_duration/60:6.2f}m] Metric: train/valid[best] | Loss: {train_loss:5.3f}/{valid_loss:5.3f}[{best_loss:5.3f}] '\
             f'| Top-1 Acc.: {train_acc:6.2%}/{valid_acc:6.2%}[{best_acc:6.2%}] | Top-5 Acc.: {train_top5_acc:6.2%}/{valid_top5_acc:6.2%}[{best_top5_acc:6.2%}]'
             print(msg)
+
+def load_model(save_dir, map_location='cpu'):
+    args_path = os.path.join(save_dir, 'args.json')
+    with open(args_path, 'rb') as f:
+        args = json.load(f)
+
+    print(args)
+
+    batch_size = args['batch_size']
+    seq_len = args['seq_len']
+    num_joints = args['num_joints']
+    dimension = args['dimension']
+    input_shape = [batch_size, seq_len, num_joints, dimension]
+    hidden_size = args['hidden_size']
+    output_size = args['output_size']
+    model_kwargs = ast.literal_eval(args['model_kwargs'])
+
+    with torch.no_grad():
+        state_dict_path = os.path.join(save_dir, 'model_state_dict.pth')
+        state_dict = torch.load(state_dict_path, map_location=map_location)
+
+        model = getattr(models, args['model_name'])(input_shape, hidden_size, output_size, **model_kwargs)
+        model.load_state_dict(state_dict)
+    
+    return model
