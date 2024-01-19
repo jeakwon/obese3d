@@ -11,7 +11,7 @@ from pprint import pprint
 import torch
 import torch.nn as nn
 
-from . import models
+import models
 from .datasets import get_obese3d_loaders
 
 def train(device, model, data_loader, criterion, optimizer, scheduler=None):
