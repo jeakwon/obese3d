@@ -18,7 +18,7 @@ def argparser():
 
     parser.add_argument('--seed', type=int, default=0, help='Random seed')
     parser.add_argument('--epochs', type=int, default=200, help='Number of training epochs')
-    parser.add_argument('--batch_size', type=int, default=128, help='Batch size for training')
+    parser.add_argument('--batch_size', type=int, default=64, help='Batch size for training')
     parser.add_argument('--lr', type=float, default=0.001, help='Learning rate for the optimizer')
 
     parser.add_argument('--data_dir', type=str, default='../coord', help='Directory for the dataset')
