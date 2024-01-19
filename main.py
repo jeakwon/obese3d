@@ -1,6 +1,6 @@
 import sys
 import argparse
-from obese3d.utils import benchmark
+from .utils import benchmark
 
 def argparser():
     # Creating an argument parser
