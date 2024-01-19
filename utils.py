@@ -12,7 +12,7 @@ import torch
 import torch.nn as nn
 
 import models
-from .datasets import get_obese3d_loaders
+from datasets import get_obese3d_loaders
 
 def train(device, model, data_loader, criterion, optimizer, scheduler=None):
     model = model.to(device)
