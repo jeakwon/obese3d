@@ -17,11 +17,11 @@ def argparser():
     parser.add_argument('--optimizer_kwargs', type=str, default="{}", help='Additional keyword arguments for the optimizer')
 
     parser.add_argument('--seed', type=int, default=0, help='Random seed')
-    parser.add_argument('--epochs', type=int, default=100, help='Number of training epochs')
+    parser.add_argument('--epochs', type=int, default=200, help='Number of training epochs')
     parser.add_argument('--batch_size', type=int, default=128, help='Batch size for training')
     parser.add_argument('--lr', type=float, default=0.001, help='Learning rate for the optimizer')
 
-    parser.add_argument('--data_dir', type=str, default='/content/drive/MyDrive/collaboration/khw/data/coord', help='Directory for the dataset')
+    parser.add_argument('--data_dir', type=str, default='../coord', help='Directory for the dataset')
     parser.add_argument('--seq_len', type=int, default=30, help='Sequence length')
     parser.add_argument('--num_joints', type=int, default=9, help='Number of joints')
     parser.add_argument('--dimension', type=int, default=3, help='Dimension of the input')
