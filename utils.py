@@ -12,6 +12,7 @@ import torch
 import torch.nn as nn
 
 from obese3d import models
+from obese3d import datasets
 from datasets import get_obese3d_loaders
 from obese3d.utils import load_args, load_model
 from obese3d.datasets import get_obese3d_loaders
