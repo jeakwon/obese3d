@@ -11,8 +11,10 @@ from pprint import pprint
 import torch
 import torch.nn as nn
 
-import models
+from obese3d import models
 from datasets import get_obese3d_loaders
+from obese3d.utils import load_args, load_model
+from obese3d.datasets import get_obese3d_loaders
 
 def train(device, model, data_loader, criterion, optimizer, scheduler=None):
     model = model.to(device)
@@ -180,3 +182,4 @@ def load_model(args, map_location='cpu'):
     model = getattr(models, args['model_name'])(input_shape, hidden_size, output_size, **model_kwargs)
     model.load_state_dict(state_dict)
     return model
+
